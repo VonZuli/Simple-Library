@@ -1,0 +1,45 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-bg-color: #fff6f2;
+  --main-text-color: #281713;
+  --heading-text-color: #d30000;
+  --secondary-bg-color: #ba8475;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+.bookDisplay {
+  background-color: var(--secondary-bg-color);
+  color: var(--main-text-color);
+  display: grid;
+  grid-template: repeat(6, 1fr) / 1fr;
+  max-width: fit-content;
+  max-height: 600px;
+  padding: 10px;
+}
+
+.book-info {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+}
+
+.book-info > p {
+  align-self: center;
+}
+
+.collapseInfo{
+  background-color: #d30000;
+  /* display: block; */
+}
+
+.collapseInfo-btn{
+  /* width: min-content; */
+}
+
