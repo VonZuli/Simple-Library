@@ -17,52 +17,111 @@
     <main class="libraryDisplay">
       <div class="bookDisplay">
         <img class="cover" src="src/images/theHobbit.jpg" alt="" />
-        <div class="details-container">
-          <div class="book-details title">
-            <h2>The Hobbit</h2>
-          </div>
-          <div class="book-details author">
-            <h4>Author:</h4>
-            <p>J.R.R. Toliken</p>
-          </div>
-          <div class="book-details yearPublished">
-            <h4>Year:</h4>
-            <p>1937</p>
-          </div>
-          <div class="book-details pages">
-            <h4>Pages:</h4>
-            <p>310</p>
-          </div>
-          <div class="book-details hasRead">
-            <h4>Read:</h4>
-            <p>Yes</p>
-          </div>
+      </div>
+      <div class="details-container">
+        <div class="book-details title">
+          <h2>The Hobbit</h2>
+        </div>
+        <div class="book-details author">
+          <h4>Author:</h4>
+          <p>J.R.R. Toliken</p>
+        </div>
+        <div class="book-details genre">
+          <h4>Genre:</h4>
+          <p>Fantasy</p>
+        </div>
+        <div class="book-details yearPublished">
+          <h4>Year:</h4>
+          <p>1937</p>
+        </div>
+        <div class="book-details pages">
+          <h4>Pages:</h4>
+          <p>310</p>
+        </div>
+        <div class="book-details hasRead">
+          <h4>Read:</h4>
+          <p>Yes</p>
         </div>
       </div>
       <div class="bookDisplay">
         <img class="cover" src="src/images/theExpanse_lw.jpg" alt="" />
-        <div class="details-container">
-          <div class="book-details title">
-            <h2>Leviathan Wakes</h2>
-          </div>
-          <div class="book-details author">
-            <h4>Author:</h4>
-            <p>James S. A. Corey</p>
-          </div>
-          <div class="book-details yearPublished">
-            <h4>Year:</h4>
-            <p>2011</p>
-          </div>
-          <div class="book-details pages">
-            <h4>Pages:</h4>
-            <p>561</p>
-          </div>
-          <div class="book-details hasRead">
-            <h4>Read:</h4>
-            <p>Yes</p>
-          </div>
+      </div>
+      <div class="details-container">
+        <div class="book-details title">
+          <h2>Leviathan Wakes</h2>
+        </div>
+        <div class="book-details author">
+          <h4>Author:</h4>
+          <p>James S. A. Corey</p>
+        </div>
+        <div class="book-details genre">
+          <h4>Genre:</h4>
+          <p>Sci-Fi</p>
+        </div>
+        <div class="book-details yearPublished">
+          <h4>Year:</h4>
+          <p>2011</p>
+        </div>
+        <div class="book-details pages">
+          <h4>Pages:</h4>
+          <p>561</p>
+        </div>
+        <div class="book-details hasRead">
+          <h4>Read:</h4>
+          <p>Yes</p>
+        </div>
+      </div>
+      <div class="add-new-book">
+        <div>
+          <object data="src/images/add-icon.svg" type="image/svg+xml"></object>
+        </div>
+      </div>
+      <div class="details-container">
+        <div class="book-details title">
+          <h2></h2>
+        </div>
+        <div class="book-details author">
+          <h4>Author:</h4>
+          <p></p>
+        </div>
+        <div class="book-details genre">
+          <h4>Genre:</h4>
+          <p></p>
+        </div>
+        <div class="book-details yearPublished">
+          <h4>Year:</h4>
+          <p></p>
+        </div>
+        <div class="book-details pages">
+          <h4>Pages:</h4>
+          <p></p>
+        </div>
+        <div class="book-details hasRead">
+          <h4>Read:</h4>
+          <p></p>
         </div>
       </div>
     </main>
+    <div id="add-new-book_modal">
+      <h3>Input book info and select "Add Book to Library".</h2>
+      <form id="add-new-book_form">
+        <label for="cover-img">Select Image:</label>
+        <img src="#" alt="" id="preview-img">
+        <input type="file" id="cover-img" name="cover-img" accept="image/*" />
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" />
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" />
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" />
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" />
+        <label for="text">Pages:</label>
+        <input type="text" id="pages" name="pages" />
+        <label for="read">Read:</label>
+        <input type="text" id="read" name="read" />
+        <button type="submit">📚 Add Book to Library</button>
+      </form>
+    <div>
   </body>
 </html>
