@@ -1,10 +1,29 @@
 "use strict";
 
-const myLibrary = [];
+const myLibrary = [
+  {
+    cover: "src/images/the_Hobbit.jpg",
+    title: "The Hobbit",
+    author: "J.R.R. Toliken",
+    genre: "Fiction/Fantasy",
+    year: 1937,
+    pages: 310,
+    read: true,
+  },
+  {
+    cover: "src/images/leviathan_wakes.jpg",
+    title: "Leviathan Wakes",
+    author: "James S. A. Corey",
+    genre: "Fiction/Sci-Fi",
+    year: 2011,
+    pages: 561,
+    read: false,
+  },
+];
 
 //book constructor
 function Book(cover, title, author, genre, pages, read) {
-  this.cover = cover
+  this.cover = cover;
   this.title = title;
   this.author = author;
   this.genre = genre;
@@ -29,16 +48,23 @@ uploadImg.addEventListener("change", function loadPreview() {
 
 const addNewBook = document.querySelector(".add-new-book > div");
 addNewBook.addEventListener("click", addBookToLibrary);
-
 function addBookToLibrary() {
   //bring up modal form
+  const modal = document.getElementById("add-new-book_modal");
+  const closeModal = document.querySelector(".close");
+  modal.style.display = "block";
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  window.onclick = (e) => {
+    return e.target == modal ? (modal.style.display = "none") : null;
+  };
   //fill form in
   //add the submitted info to the array as an object
 }
 
-function displayBook() {
-
-}
+function displayBook() {}
 
 //displays the information about the book in a collapsible section
 const covers = document.querySelectorAll(".bookDisplay");

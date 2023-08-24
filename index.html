@@ -16,7 +16,7 @@
   <body>
     <main class="libraryDisplay">
       <div class="bookDisplay">
-        <img class="cover" src="src/images/theHobbit.jpg" alt="" />
+        <img class="cover" src="src/images/the_Hobbit.jpg" alt="" />
       </div>
       <div class="details-container">
         <div class="book-details title">
@@ -42,9 +42,10 @@
           <h4>Read:</h4>
           <p>Yes</p>
         </div>
+        <button id="deleteFromLibrary">Remove from Library</button>
       </div>
       <div class="bookDisplay">
-        <img class="cover" src="src/images/theExpanse_lw.jpg" alt="" />
+        <img class="cover" src="src/images/leviathan_wakes.jpg" alt="" />
       </div>
       <div class="details-container">
         <div class="book-details title">
@@ -70,11 +71,13 @@
           <h4>Read:</h4>
           <p>Yes</p>
         </div>
+        <button id="deleteFromLibrary">Remove from Library</button>
       </div>
       <div class="add-new-book">
         <div>
           <object data="src/images/add-icon.svg" type="image/svg+xml"></object>
         </div>
+        <h4>Add book to library</h4>
       </div>
       <div class="details-container">
         <div class="book-details title">
@@ -103,8 +106,6 @@
       </div>
     </main>
     <div id="add-new-book_modal">
-      
-      <!-- <h3>Input book info and select "Add Book to Library".</h3> -->
       <form id="add-new-book_form">
         <h3>Input book info and select "Add Book to Library".</h3>
         <span class="close">&times;</span>
@@ -112,19 +113,19 @@
         <img src="#" alt="" id="preview-img">
         <input type="file" id="cover-img" name="cover-img" accept="image/*" />
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" />
+        <input required type="text" id="title" name="title" />
         <label for="author">Author:</label>
-        <input type="text" id="author" name="author" />
+        <input required type="text" id="author" name="author" />
         <label for="genre">Genre:</label>
         <input type="text" id="genre" name="genre" />
-        <label for="year">Year:</label>
-        <input type="text" id="year" name="year" />
-        <label for="text">Pages:</label>
-        <input type="text" id="pages" name="pages" />
-        <label for="read">Read:</label>
-        <input type="text" id="read" name="read" />
+        <label for="yearPublished">Year:</label>
+        <input type="number" min="1800" max="2099" id="yearPublished" name="yearPublished" />
+        <label for="pages">Pages:</label>
+        <input type="number" min="1" max="10000" id="pages" name="pages" />
+        <label for="hasRead">Has Read:</label>
+        <input type="checkbox" id="hasRead" name="hasRead" />
         <button type="submit">📚 Add Book to Library</button>
       </form>
-    <div>
+    </div>
   </body>
 </html>
