@@ -2,7 +2,9 @@
 
 const myLibrary = [];
 
-function Book(title, author, genre, pages, read) {
+//book constructor
+function Book(cover, title, author, genre, pages, read) {
+  this.cover = cover
   this.title = title;
   this.author = author;
   this.genre = genre;
@@ -15,6 +17,7 @@ function Book(title, author, genre, pages, read) {
   };
 }
 
+//gets the image preview for uploaded images and displays it for the user
 const uploadImg = document.getElementById("cover-img");
 uploadImg.addEventListener("change", function loadPreview() {
   const previewImg = document.getElementById("preview-img");
@@ -27,15 +30,21 @@ uploadImg.addEventListener("change", function loadPreview() {
 const addNewBook = document.querySelector(".add-new-book > div");
 addNewBook.addEventListener("click", addBookToLibrary);
 
-function addBookToLibrary() {}
+function addBookToLibrary() {
+  //bring up modal form
+  //fill form in
+  //add the submitted info to the array as an object
+}
 
-function displayBook() {}
+function displayBook() {
 
+}
+
+//displays the information about the book in a collapsible section
 const covers = document.querySelectorAll(".bookDisplay");
 covers.forEach((cover) => {
   cover.addEventListener("click", collapseDetails);
 });
-
 function collapseDetails() {
   this.style.opacity = 0.7;
   this.style.border = "5px solid var(--heading-text-color)";
