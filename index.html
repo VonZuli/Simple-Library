@@ -15,94 +15,11 @@
   </head>
   <body>
     <main class="libraryDisplay">
-      <div class="bookDisplay">
-        <img class="cover" src="src/images/the_Hobbit.jpg" alt="" />
-      </div>
-      <div class="details-container">
-        <div class="book-details title">
-          <h2>The Hobbit</h2>
-        </div>
-        <div class="book-details author">
-          <h4>Author:</h4>
-          <p>J.R.R. Toliken</p>
-        </div>
-        <div class="book-details genre">
-          <h4>Genre:</h4>
-          <p>Fantasy</p>
-        </div>
-        <div class="book-details yearPublished">
-          <h4>Year:</h4>
-          <p>1937</p>
-        </div>
-        <div class="book-details pages">
-          <h4>Pages:</h4>
-          <p>310</p>
-        </div>
-        <div class="book-details hasRead">
-          <h4>Read:</h4>
-          <p>Yes</p>
-        </div>
-        <button id="deleteFromLibrary">Remove from Library</button>
-      </div>
-      <div class="bookDisplay">
-        <img class="cover" src="src/images/leviathan_wakes.jpg" alt="" />
-      </div>
-      <div class="details-container">
-        <div class="book-details title">
-          <h2>Leviathan Wakes</h2>
-        </div>
-        <div class="book-details author">
-          <h4>Author:</h4>
-          <p>James S. A. Corey</p>
-        </div>
-        <div class="book-details genre">
-          <h4>Genre:</h4>
-          <p>Sci-Fi</p>
-        </div>
-        <div class="book-details yearPublished">
-          <h4>Year:</h4>
-          <p>2011</p>
-        </div>
-        <div class="book-details pages">
-          <h4>Pages:</h4>
-          <p>561</p>
-        </div>
-        <div class="book-details hasRead">
-          <h4>Read:</h4>
-          <p>Yes</p>
-        </div>
-        <button id="deleteFromLibrary">Remove from Library</button>
-      </div>
       <div class="add-new-book">
         <div>
           <object data="src/images/add-icon.svg" type="image/svg+xml"></object>
         </div>
         <h4>Add book to library</h4>
-      </div>
-      <div class="details-container">
-        <div class="book-details title">
-          <h2></h2>
-        </div>
-        <div class="book-details author">
-          <h4>Author:</h4>
-          <p></p>
-        </div>
-        <div class="book-details genre">
-          <h4>Genre:</h4>
-          <p></p>
-        </div>
-        <div class="book-details yearPublished">
-          <h4>Year:</h4>
-          <p></p>
-        </div>
-        <div class="book-details pages">
-          <h4>Pages:</h4>
-          <p></p>
-        </div>
-        <div class="book-details hasRead">
-          <h4>Read:</h4>
-          <p></p>
-        </div>
       </div>
     </main>
     <div id="add-new-book_modal">
@@ -124,7 +41,7 @@
         <input type="number" min="1" max="10000" id="pages" name="pages" />
         <label for="hasRead">Has Read:</label>
         <input type="checkbox" id="hasRead" name="hasRead" />
-        <button type="submit">📚 Add Book to Library</button>
+        <button id="addBook" type="submit">📚 Add Book to Library</button>
       </form>
     </div>
   </body>
