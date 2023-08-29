@@ -14,21 +14,17 @@
     />
   </head>
   <body>
+    <div class="header">
+      <h1>My Book Library</h1>
+      <button type="button" id="addBook">Add Book to Library</button>
+    </div>
     <main class="libraryDisplay">
-      <div class="add-new-book">
-        <div>
-          <object data="src/images/add-icon.svg" type="image/svg+xml"></object>
-        </div>
-        <h4>Add book to library</h4>
-      </div>
+      <div class="bookContainer" id="bookCardContainer"></div>
     </main>
     <div id="add-new-book_modal">
       <form id="add-new-book_form">
         <h3>Input book info and select "Add Book to Library".</h3>
         <span class="close">&times;</span>
-        <label for="cover-img">Upload Cover Image:</label>
-        <img src="#" alt="" id="preview-img">
-        <input type="file" id="cover-img" name="cover-img" accept="image/*" />
         <label for="title">Title:</label>
         <input required type="text" id="title" name="title" />
         <label for="author">Author:</label>
@@ -41,7 +37,7 @@
         <input type="number" min="1" max="10000" id="pages" name="pages" />
         <label for="hasRead">Has Read:</label>
         <input type="checkbox" id="hasRead" name="hasRead" />
-        <button id="addBook" type="submit">📚 Add Book to Library</button>
+        <button id="addBookSubmit" type="submit">📚 Add Book to Library</button>
       </form>
     </div>
   </body>
