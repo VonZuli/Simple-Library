@@ -28,11 +28,10 @@ function Book(title, author, genre, yearPublished, pages, read) {
   this.read = read;
 }
 
+const libraryDisplay = document.querySelector(".libraryDisplay");
 const bookCardContainer = document.getElementById("bookCardContainer");
 function addBookToLibrary() {
-  // const libraryDisplay = document.querySelector(".libraryDisplay");
-    for (let i = 0; i < myLibrary.length; i++) {
-
+  for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
     let bookDetails = document.createElement("div");
     bookDetails.setAttribute("class", "bookDetails");
@@ -52,9 +51,12 @@ function addBookToLibrary() {
             <button id="deleteFromLibrary">Remove from Library</button>`;
 
     bookCardContainer.appendChild(bookDetails);
-  };
+    
+    const deleteFromLibrary = document.getElementById("deleteFromLibrary");
+    deleteFromLibrary.addEventListener('click', function deleteBook() {
+    })
+  }
 }
-
 
 const addNewBook = document.querySelector("#addBook");
 addNewBook.addEventListener("click", () => {
