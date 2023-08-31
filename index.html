@@ -22,7 +22,7 @@
       <div class="bookContainer" id="bookCardContainer"></div>
     </main>
     <div id="add-new-book_modal">
-      <form id="add-new-book_form">
+      <form id="add-new-book_form" name="add-new-book_form">
         <h3>Input book info and select "Add Book to Library".</h3>
         <span class="close">&times;</span>
         <label for="title">Title:</label>
@@ -37,7 +37,7 @@
         <input type="number" min="1" max="10000" id="pages" name="pages" />
         <label for="hasRead">Has Read:</label>
         <input type="checkbox" id="hasRead" name="hasRead" />
-        <button id="addBookSubmit" type="submit">📚 Add Book to Library</button>
+        <input id="addBookSubmit" type="submit" value="📚 Add Book to Library"/>
       </form>
     </div>
   </body>
