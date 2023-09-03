@@ -2,17 +2,17 @@
 //#region MODEL SECTION
 const savedBooks = JSON.parse(localStorage.getItem("books"));
 let myLibrary = savedBooks || [
-  { title: "Book1", author: "Mike", genre: "fuck", yearPublished: 1989, pages: 69, read: true },
-  { title: "Book2", author: "You", genre: "nofuck", yearPublished: 2023, pages: 96, read: false },
-  { title: "Book3", author: "Me", genre: "yesfuck", yearPublished: 2032, pages: 89, read: true },
-  {
-    title: "Book4",
-    author: "bruh",
-    genre: "holyfuck",
-    yearPublished: 1998,
-    pages: 12,
-    read: false,
-  },
+  // { title: "Book1", author: "Mike", genre: "fuck", yearPublished: 1989, pages: 69, read: true },
+  // { title: "Book2", author: "You", genre: "nofuck", yearPublished: 2023, pages: 96, read: false },
+  // { title: "Book3", author: "Me", genre: "yesfuck", yearPublished: 2032, pages: 89, read: true },
+  // {
+  //   title: "Book4",
+  //   author: "bruh",
+  //   genre: "holyfuck",
+  //   yearPublished: 1998,
+  //   pages: 12,
+  //   read: false,
+  // },
 ];
 
 //book constructor
@@ -172,7 +172,7 @@ addBookSubmit.addEventListener("click", (e) => {
   const genre = document.querySelector("#genre").value;
   const yearPublished = document.querySelector("#yearPublished").value;
   const pages = document.querySelector("#pages").value;
-  const hasRead = document.querySelector("#hasRead");
+  const hasRead = document.querySelector("#hasRead").checked;
   const id = Date.now();
 
   // simple form validation, should be refactored with regex to provide more security to the form data being submitted
