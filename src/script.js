@@ -85,24 +85,23 @@ function createTooltips(content) {
   return tooltip;
 }
 
-
 // create dummy icons, they do nothing for now
 function createIcons() {
   const div = createBookElement("div", "", "icons");
 
   const icon1 = document.createElement("img");
   icon1.className = "bookmark-icon";
-  icon1.src = "../src/images/bookmark-icon.svg";
+  icon1.src = "src/images/bookmark-icon.svg";
   div.appendChild(createTooltips("Track your progress")).appendChild(icon1);
 
   const icon2 = document.createElement("img");
   icon2.className = "audiobook-icon";
-  icon2.src = "../src/images/audiobook-icon.svg";
+  icon2.src = "src/images/audiobook-icon.svg";
   div.appendChild(createTooltips("Get Audiobook")).appendChild(icon2);;
 
   const icon3 = document.createElement("img");
   icon3.className = "userCart-icon";
-  icon3.src = "../src/images/cart-icon.svg";
+  icon3.src = "src/images/cart-icon.svg";
   div.appendChild(createTooltips("Buy hardcopy")).appendChild(icon3);
 
   return div;
