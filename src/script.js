@@ -55,11 +55,11 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "bookDetailsCard read-checked");
       book.read = true;
-      renderBooks();
+      saveLibrary()
     } else {
-      // bookItem.setAttribute("class", "bookDetailsCard read-unchecked");
+      bookItem.setAttribute("class", "bookDetailsCard read-unchecked");
       book.read = false;
-      renderBooks();
+      saveLibrary()
     }
   });
   if (book.read) {
@@ -97,8 +97,8 @@ function createIcons() {
 
 function deleteBook(index) {
   myLibrary.splice(index, 1)
-  renderBooks();
-  // saveLibrary();
+  // renderBooks();
+  saveLibrary();
 }
 
 // create all of the book content on the bookDetailsCard in the DOM
@@ -130,18 +130,9 @@ function createBook(book, index) {
   // saveLibrary();
 }
 
-
-
-// function toggleRead(bookID, checked) {
-//   myLibrary.forEach((book) => {
-//     // review this
-//     book.id === bookID ? (book.hasRead = checked) : !checked;
-//   });
-//   saveLibrary();
-// }
-
 function saveLibrary() {
   localStorage.setItem("books", JSON.stringify(myLibrary));
+  renderBooks();
 }
 //#endregion MODEL SECTION
 
@@ -185,7 +176,7 @@ addBookSubmit.addEventListener("click", (e) => {
   const newBook = new Book(title, author, genre, yearPublished, pages, hasRead, id);
   myLibrary.push(newBook);
   createBook(newBook);
-  render();
+  saveLibrary();
 
   const modal = document.getElementById("add-new-book_modal");
   modal.style.display = "none";
@@ -197,21 +188,19 @@ addBookSubmit.addEventListener("click", (e) => {
 
 //#endregion CONTROLLER SECTION
 
-// Book.prototype.toggleRead = function () {
-//   this.read = !this.read;
-// };
 //#region VIEW SECTION
 
 // function to render all the books and clear the container DOM
 function renderBooks() {
   document.querySelector("#bookCardContainer").innerHTML = "";
   myLibrary.map((book, index) => {
-    createBook(book, index);
+    createBook(book, index); 
   });
 }
 
 // render on page load
-renderBooks();
+// renderBooks();
+saveLibrary();
 
 
 

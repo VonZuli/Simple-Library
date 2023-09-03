@@ -122,7 +122,7 @@ body {
   /* grid-column: span 2; */
   grid-area: 8/2/9/3;
   justify-self: center;
-  background-color: var(--heading-text-color);
+  background-color: var(--main-text-color);
   color: var(--main-bg-color);
   border: none;
   border-radius: 5px;
@@ -151,7 +151,7 @@ body {
 .edit-icon {
   grid-area: 8/1/9/2;
   justify-self: center;
-  background-color: var(--heading-text-color);
+  background-color: var(--main-text-color);
   color: var(--main-bg-color);
   border: none;
   border-radius: 5px;
