@@ -14,7 +14,6 @@ let myLibrary = savedBooks || [
     read: false,
   },
 ];
-// render();
 
 //book constructor
 class Book {
@@ -55,16 +54,16 @@ function createReadElement(bookItem, book) {
     if (e.target.checked) {
       bookItem.setAttribute("class", "bookDetailsCard read-checked");
       book.read = true;
-      saveLibrary()
+      saveLibrary();
     } else {
       bookItem.setAttribute("class", "bookDetailsCard read-unchecked");
       book.read = false;
-      saveLibrary()
+      saveLibrary();
     }
   });
   if (book.read) {
     readToggleSwitch.checked = true;
-    bookItem.className = "bookDetailsCard read-checked"; //read-checked
+    bookItem.className = "bookDetailsCard read-checked";
   }
   read.appendChild(readLabel);
   readLabel.appendChild(readToggleSwitch);
@@ -79,25 +78,38 @@ function createEditBtn(book) {
   return editIcon;
 }
 
+function createTooltips(content) {
+  const tooltip = createBookElement("div", "", "tooltip");
+  const tooltiptext = createBookElement("span", content, "tooltiptext");
+  tooltip.appendChild(tooltiptext);
+  return tooltip;
+}
+
+
 // create dummy icons, they do nothing for now
 function createIcons() {
   const div = createBookElement("div", "", "icons");
-  const icon1 = document.createElement("img");
-  icon1.src = "../src/images/bookmark-icon.svg";
-  const icon2 = document.createElement("img");
-  icon2.src = "../src/images/audiobook-icon.svg";
-  const icon3 = document.createElement("img");
-  icon3.src = "../src/images/cart-icon.svg";
 
-  div.appendChild(icon1);
-  div.appendChild(icon2);
-  div.appendChild(icon3);
+  const icon1 = document.createElement("img");
+  icon1.className = "bookmark-icon";
+  icon1.src = "../src/images/bookmark-icon.svg";
+  div.appendChild(createTooltips("Track your progress")).appendChild(icon1);
+
+  const icon2 = document.createElement("img");
+  icon2.className = "audiobook-icon";
+  icon2.src = "../src/images/audiobook-icon.svg";
+  div.appendChild(createTooltips("Get Audiobook")).appendChild(icon2);;
+
+  const icon3 = document.createElement("img");
+  icon3.className = "userCart-icon";
+  icon3.src = "../src/images/cart-icon.svg";
+  div.appendChild(createTooltips("Buy hardcopy")).appendChild(icon3);
+
   return div;
 }
 
 function deleteBook(index) {
-  myLibrary.splice(index, 1)
-  // renderBooks();
+  myLibrary.splice(index, 1);
   saveLibrary();
 }
 
@@ -122,9 +134,9 @@ function createBook(book, index) {
   bookItem.appendChild(createBookElement("button", "✖ Delete", "deleteFromLibrary"));
   bookItem.appendChild(createEditBtn(book));
 
-  bookItem.querySelector('.deleteFromLibrary').addEventListener('click',()=>{
-    deleteBook(index)
-  })
+  bookItem.querySelector(".deleteFromLibrary").addEventListener("click", () => {
+    deleteBook(index);
+  });
 
   bookCardContainer.insertAdjacentElement("afterbegin", bookItem);
   // saveLibrary();
@@ -162,15 +174,17 @@ addBookSubmit.addEventListener("click", (e) => {
   const pages = document.querySelector("#pages").value;
   const hasRead = document.querySelector("#hasRead");
   const id = Date.now();
-  // if (
-  //   title.value == "" ||
-  //   author.value == "" ||
-  //   genre.value == "" ||
-  //   yearPublished.value == "" ||
-  //   pages.value == ""
-  // ) {
-  //   return;
-  // }
+
+  // simple form validation, should be refactored with regex to provide more security to the form data being submitted
+  if (
+    title.value == "" ||
+    author.value == "" ||
+    genre.value == "" ||
+    yearPublished.value == "" ||
+    pages.value == ""
+  ) {
+    return;
+  }
   let readStatus = false;
   hasRead.checked ? (readStatus = true) : (readStatus = false);
   const newBook = new Book(title, author, genre, yearPublished, pages, hasRead, id);
@@ -194,322 +208,10 @@ addBookSubmit.addEventListener("click", (e) => {
 function renderBooks() {
   document.querySelector("#bookCardContainer").innerHTML = "";
   myLibrary.map((book, index) => {
-    createBook(book, index); 
+    createBook(book, index);
   });
 }
 
 // render on page load
-// renderBooks();
 saveLibrary();
-
-
-
-// function render() {
-//   const bookCardContainer = document.getElementById("bookCardContainer");
-//   bookCardContainer.innerHTML = "";
-
-//   myLibrary.forEach((book) => {
-//     // for (let key in myLibrary) {
-//     //   console.log(`${key}: ${myLibrary[key]}`);
-//     // }
-//     const bookDetailsCard = document.createElement("div");
-//     bookDetailsCard.classList.add("bookDetailsCard");
-//     bookDetailsCard.setAttribute("data-arrayid", `${book.id}`);
-//     // myLibrary.indexOf(myBook)); this may replace book ID on line 165
-//     const bookTitle = document.createElement("h2");
-//     bookTitle.textContent = `${book.title}`;
-//     bookDetailsCard.appendChild(bookTitle);
-
-//     const bookAuthorLabel = document.createElement("h4");
-//     bookAuthorLabel.textContent = "Author:";
-//     bookDetailsCard.appendChild(bookAuthorLabel);
-
-//     const bookAuthorContent = document.createElement("p");
-//     bookAuthorContent.textContent = `${book.author}`;
-//     bookDetailsCard.appendChild(bookAuthorContent);
-
-//     const bookGenreLabel = document.createElement("h4");
-//     bookGenreLabel.textContent = "Genre:";
-//     bookDetailsCard.appendChild(bookGenreLabel);
-
-//     const bookGenreContent = document.createElement("p");
-//     bookGenreContent.textContent = `${book.genre}`;
-//     bookDetailsCard.appendChild(bookGenreContent);
-
-//     const bookYearLabel = document.createElement("h4");
-//     bookYearLabel.textContent = "Year:";
-//     bookDetailsCard.appendChild(bookYearLabel);
-
-//     const bookYearContent = document.createElement("p");
-//     bookYearContent.textContent = `${book.yearPublished}`;
-//     bookDetailsCard.appendChild(bookYearContent);
-
-//     const bookPagesLabel = document.createElement("h4");
-//     bookPagesLabel.textContent = "Pages:";
-//     bookDetailsCard.appendChild(bookPagesLabel);
-
-//     const bookPagesContent = document.createElement("p");
-//     bookPagesContent.textContent = `${book.pages}`;
-//     bookDetailsCard.appendChild(bookPagesContent);
-
-//     const readLabel = document.createElement("h4");
-//     readLabel.textContent = "Read:";
-//     bookDetailsCard.appendChild(readLabel);
-//     const readToggleLabel = document.createElement("label");
-//     // readToggleLabel.setAttribute("for", "toggleRead");
-//     readToggleLabel.classList.add("switch");
-//     readToggleLabel.setAttribute("id", "toggleRead");
-//     const readToggleSwitch = document.createElement("input");
-//     readToggleSwitch.setAttribute("type", "checkbox");
-//     // readToggleSwitch.setAttribute("name", "toggleRead");
-//     const readToggleSlider = document.createElement("span");
-//     readToggleSlider.setAttribute("class", "slider round");
-//     bookDetailsCard.appendChild(readToggleLabel);
-//     readToggleLabel.appendChild(readToggleSwitch);
-//     readToggleLabel.appendChild(readToggleSlider);
-
-//     const deleteBtn = document.createElement("button");
-//     deleteBtn.classList.add("deleteFromLibrary");
-//     deleteBtn.id = book.id;
-//     deleteBtn.textContent = "Remove from Libary";
-
-//     // const onDelete = (bookToDelete) => {
-//     //   return () => {
-//     //     deleteBook(bookToDelete.id);
-//     //     render();
-//     //   };
-//     // };
-
-//     deleteBtn.addEventListener("click", deleteBook);
-//     bookDetailsCard.appendChild(deleteBtn);
-
-//     bookCardContainer.appendChild(bookDetailsCard);
-//   });
-// }
-//#endregion VIEW SECTION
-
-// for (let i = 0; i < myLibrary.length; i++) {
-//   let book = myLibrary[i];
-//   console.log(myLibrary[i]);
-//   bookDetails.setAttribute("id", book.id);
-//   bookDetails.innerHTML = `
-//           <h2>${book.title}</h2>
-//           <h4>Author:</h4>
-//           <p>${book.author}</p>
-//           <h4>Genre:</h4>
-//           <p>${book.genre}</p>
-//           <h4>Year:</h4>
-//           <p>${book.yearPublished}</p>
-//           <h4>Pages:</h4>
-//           <p>${book.pages}</p>
-//           <h4>Read:</h4>
-//           <label for="toggleRead" class="switch" id="toggleRead">
-//             <input type="checkbox" name="toggleRead">
-//             <span class="slider round"></span>
-//           </label>
-//           <button class="deleteFromLibrary" id="${book.id}">Remove from Library</button>`;
-
-//   bookCardContainer.appendChild(bookDetails);
-
-//   let deleteFromLibrary = document.querySelector(".deleteFromLibrary");
-// }
-// }
-
-// const updateBooksGrid = () => {
-//   resetBooksGrid()
-//   for (let book of myLibrary.books) {
-//     createBookCard(book)
-//   }
-// }
-// const resetBooksGrid = () => {
-//   bookCardContainer.innerHTML = "";
-// };
-//#region Legacy Code
-// function addBookToLibrary() {
-//   //fill form in
-//   //add the submitted info to the array as an object
-//   let cover = document.querySelector("#preview-img").src;
-//   let title = document.querySelector("#title").value;
-//   let author = document.querySelector("#author").value;
-//   let genre = document.querySelector("#genre").value;
-//   let yearPublished = document.querySelector("#yearPublished").value;
-//   let pages = document.querySelector("#pages").value;
-//   let hasRead = document.querySelector("#hasRead").checked;
-
-//   let newBook = new Book(cover, title, author, genre, yearPublished, pages, hasRead);
-//   myLibrary.push(newBook);
-//   renderBookDisplay();
-//   let modalClose = document.querySelector("#add-new-book_modal");
-//   modalClose.style.display = "none";
-// }
-
-// const addNewBook = document.querySelector("#addBook");
-// addNewBook.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   //bring up modal form
-//   const modal = document.getElementById("add-new-book_modal");
-//   const closeModal = document.querySelector(".close");
-//   modal.style.display = "block";
-
-//   closeModal.addEventListener("click", () => {
-//     modal.style.display = "none";
-//   });
-//   window.onclick = (e) => {
-//     return e.target == modal ? (modal.style.display = "none") : null;
-//   };
-// });
-
-// //
-
-// // const addBook = document.querySelector("#addBook");
-// // addBook.addEventListener("click", (e) => {
-// //   e.preventDefault();
-// //   addBookToLibrary();
-
-// // });
-
-// function renderBookDisplay() {
-//   let libraryDisplay = document.querySelector(".libraryDisplay");
-//   libraryDisplay.innerHTML = "";
-//   // for each index of myLibrary
-//   for (let i = 0; i < myLibrary.length; i++) {
-//     let book = myLibrary[i];
-
-//     // create div with class of bookDisplay
-//     let bookDisplay = document.createElement("div");
-//     bookDisplay.setAttribute("class", "bookDisplay");
-//     libraryDisplay.appendChild(bookDisplay);
-
-//     let bookDetailsContainer = document.createElement("div");
-//     bookDetailsContainer.setAttribute("class", "details-container");
-//     bookDisplay.appendChild(bookDetailsContainer);
-
-//     let bookDetails = `
-//            <div class="book-details title">
-//              <h2>${book.title}</h2>
-//            </div>
-//            <div class="book-details author">
-//              <h4>Author:</h4>
-//              <p>${book.author}</p>
-//            </div>
-//            <div class="book-details genre">
-//              <h4>Genre:</h4>
-//              <p>${book.genre}</p>
-//            </div>
-//            <div class="book-details yearPublished">
-//              <h4>Year:</h4>
-//              <p>${book.year}</p>
-//            </div>
-//            <div class="book-details pages">
-//              <h4>Pages:</h4>
-//              <p>${book.pages}</p>
-//            </div>
-//            <div class="book-details hasRead">
-//              <h4>Read:</h4>
-//              <p>${book.hasRead === true ? "Has read" : "Have not read yet"}</p>
-//           </div>
-//             <button id="deleteFromLibrary">Remove from Library</button>`;
-
-//     bookDetailsContainer.innerHTML = bookDetails;
-//     libraryDisplay.appendChild(bookDetailsContainer);
-//   }
-//     let book = myLibrary[i];
-//     let bookDisplay = document.createElement("div");
-
-//     bookDisplay.setAttribute("class", "bookDisplay");
-
-//     let bookDisplayCover = `<img class="cover" src=${book.cover} alt="" />`;
-//     bookDisplay.innerHTML = bookDisplayCover;
-//     libraryDisplay.appendChild(bookDisplay);
-
-//     let bookDetailsContainer = document.createElement("div");
-//     bookDetailsContainer.setAttribute("class", "details-container");
-//     bookDisplay.appendChild(bookDetailsContainer);
-
-//     let bookDetails = `
-//       <div class="book-details title">
-//         <h2>${book.title}</h2>
-//       </div>
-//       <div class="book-details author">
-//         <h4>Author:</h4>
-//         <p>${book.author}</p>
-//       </div>
-//       <div class="book-details genre">
-//         <h4>Genre:</h4>
-//         <p>${book.genre}</p>
-//       </div>
-//       <div class="book-details yearPublished">
-//         <h4>Year:</h4>
-//         <p>${book.year}</p>
-//       </div>
-//       <div class="book-details pages">
-//         <h4>Pages:</h4>
-//         <p>${book.pages}</p>
-//       </div>
-//       <div class="book-details hasRead">
-//         <h4>Read:</h4>
-//         <p>${book.hasRead === true ? "Has read" : "Have not read yet"}</p>
-//       </div>
-//         <button id="deleteFromLibrary">Remove from Library</button>`;
-
-//     bookDetailsContainer.innerHTML = bookDetails;
-//     libraryDisplay.appendChild(bookDetailsContainer);
-// }
-
-//   // let addNewBookBtn = `
-//   //     <div>
-//   //       <object data="src/images/add-icon.svg" type="image/svg+xml"></object>
-//   //     </div>
-//   //     <h4>Add book to library</h4>`;
-//   // let addNewBookBtnContainer = document.createElement("div");
-//   // addNewBookBtnContainer.setAttribute("class", "add-new-book");
-//   // addNewBookBtnContainer.innerHTML = addNewBookBtn;
-//   // libraryDisplay.appendChild(addNewBookBtnContainer);
-
-//   //displays the information about the book in a collapsible section
-//   // const covers = document.querySelectorAll(".bookDisplay");
-//   // covers.forEach((cover) => {
-//   //   cover.addEventListener("click", collapseDetails);
-//   // });
-
-//   const addNewBook = document.querySelector(".add-new-book > div");
-//   addNewBook.addEventListener("click", () => {
-//     //bring up modal form
-//     const modal = document.getElementById("add-new-book_modal");
-//     const closeModal = document.querySelector(".close");
-//     modal.style.display = "block";
-
-//     closeModal.addEventListener("click", () => {
-//       modal.style.display = "none";
-//     });
-//     window.onclick = (e) => {
-//       return e.target == modal ? (modal.style.display = "none") : null;
-//     };
-//   });
-// }
-
-// // function collapseDetails() {
-// //   this.style.opacity = 0.7;
-// //   this.style.border = "5px solid var(--heading-text-color)";
-
-// //   let bookDetailsContainer = document.querySelector(".details-container");
-
-// //   if (bookDetailsContainer.style.display === "grid") {
-// //     bookDetailsContainer.style.display = "none";
-// //     this.style.opacity = 1;
-// //     this.style.border = "none";
-// //   } else {
-// //     bookDetailsContainer.style.display = "grid";
-// //   }
-// // }
-
-// // gets the image preview for uploaded images and displays it for the user
-// const uploadImg = document.getElementById("cover-img");
-// uploadImg.addEventListener("change", function loadPreview() {
-//   const previewImg = document.getElementById("preview-img");
-//   previewImg.src = window.URL.createObjectURL(this.files[0]);
-//   previewImg.onload(() => {
-//     URL.revokeObjectURL(previewImg.src);
-//   });
-// });
-//#endregion Legacy Code
+//#endregion VIEW SSECTION
