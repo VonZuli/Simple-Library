@@ -4,6 +4,15 @@ const savedBooks = JSON.parse(localStorage.getItem("books"));
 let myLibrary = savedBooks || [
   { title: "Book1", author: "Mike", genre: "fuck", yearPublished: 1989, pages: 69, read: true },
   { title: "Book2", author: "You", genre: "nofuck", yearPublished: 2023, pages: 96, read: false },
+  { title: "Book3", author: "Me", genre: "yesfuck", yearPublished: 2032, pages: 89, read: true },
+  {
+    title: "Book4",
+    author: "bruh",
+    genre: "holyfuck",
+    yearPublished: 1998,
+    pages: 12,
+    read: false,
+  },
 ];
 // render();
 
@@ -20,6 +29,7 @@ class Book {
   }
 }
 
+// function to create html elements with textcontent and classes
 function createBookElement(el, content, className) {
   const element = document.createElement(el);
   element.textContent = content;
@@ -27,37 +37,78 @@ function createBookElement(el, content, className) {
   return element;
 }
 
+// function to create input to mark read status
 function createReadElement(bookItem, book) {
   const read = document.createElement("div");
   read.className = "book-read";
-  read.appendChild(createBookElement("h4", "Read:", `book-read-title`));
-  const input = document.createElement("input");
-  input.type = "checkbox";
-  input.addEventListener("click", (e) => {
+  const readLabel = createBookElement("h4", "Read:", `book-read-label`);
+  read.appendChild(readLabel);
+  // readLabel.classList.add("switch");
+  // readLabel.setAttribute("id", "toggleRead");
+  // readLabel.setAttribute("for", "toggleRead");
+  const readToggleSwitch = document.createElement("input");
+  readToggleSwitch.type = "checkbox";
+  // readToggleSwitch.setAttribute("name", "toggleRead")
+  // const readToggleSlider = document.createElement("span");
+  // readToggleSlider.setAttribute("class", "slider round");
+  readToggleSwitch.addEventListener("click", (e) => {
     if (e.target.checked) {
-      bookItem.className = "read-checked";
+      bookItem.setAttribute("class", "bookDetailsCard read-checked");
       book.read = true;
       renderBooks();
     } else {
-      bookItem.className = "read-unchecked";
+      // bookItem.setAttribute("class", "bookDetailsCard read-unchecked");
       book.read = false;
       renderBooks();
     }
   });
   if (book.read) {
-    input.checked = true;
-    bookItem.className = "bookDetailsCard"; //read-checked
+    readToggleSwitch.checked = true;
+    bookItem.className = "bookDetailsCard read-checked"; //read-checked
   }
-  read.appendChild(input);
+  read.appendChild(readLabel);
+  readLabel.appendChild(readToggleSwitch);
+  // readLabel.appendChild(readToggleSlider)
   return read;
 }
 
+// create edit icon w/ event listener
+function createEditBtn(book) {
+  const editIcon = createBookElement("button", "✏ Edit", "edit-icon");
+  editIcon.addEventListener("click", (e) => console.log(book));
+  return editIcon;
+}
+
+// create dummy icons, they do nothing for now
+function createIcons() {
+  const div = createBookElement("div", "", "icons");
+  const icon1 = document.createElement("img");
+  icon1.src = "../src/images/bookmark-icon.svg";
+  const icon2 = document.createElement("img");
+  icon2.src = "../src/images/audiobook-icon.svg";
+  const icon3 = document.createElement("img");
+  icon3.src = "../src/images/cart-icon.svg";
+
+  div.appendChild(icon1);
+  div.appendChild(icon2);
+  div.appendChild(icon3);
+  return div;
+}
+
+function deleteBook(index) {
+  myLibrary.splice(index, 1)
+  renderBooks();
+  // saveLibrary();
+}
+
+// create all of the book content on the bookDetailsCard in the DOM
 function createBook(book, index) {
   const bookCardContainer = document.getElementById("bookCardContainer");
   const bookItem = document.createElement("div");
   bookItem.id = index;
   bookItem.setAttribute("key", index);
   bookItem.className = "bookDetailsCard";
+  bookItem.appendChild(createIcons());
   bookItem.appendChild(createBookElement("h2", `${book.title}`, "book-title"));
   bookItem.appendChild(createBookElement("h4", `Author:`, "book-author"));
   bookItem.appendChild(createBookElement("p", `${book.author}`, "book-author"));
@@ -69,44 +120,25 @@ function createBook(book, index) {
   bookItem.appendChild(createBookElement("p", `${book.pages}`, "book-pages"));
   bookItem.appendChild(createReadElement(bookItem, book));
   bookItem.appendChild(createBookElement("button", "✖ Delete", "deleteFromLibrary"));
+  bookItem.appendChild(createEditBtn(book));
+
+  bookItem.querySelector('.deleteFromLibrary').addEventListener('click',()=>{
+    deleteBook(index)
+  })
+
   bookCardContainer.insertAdjacentElement("afterbegin", bookItem);
   // saveLibrary();
 }
 
-function deleteBook(e) {
-  const bookToDelete = e.target.id;
-  console.log(+bookToDelete);
 
-  // for (let i = 0; i < myLibrary.length; i++) {
-  //   if (myLibrary[i] == bookToDelete.target.id) {
-  //     myLibrary.splice(i, 1);
-  //   }
-  // }
-  // myLibrary.forEach((index)=>{
-  //   console.log(index[i]);
-  //   console.log(index.id);
-  //   console.log(bookToDelete.target.id);
-  //  if (index.id == bookToDelete.target.id) {
-  //   myLibrary.splice(index, 1)
-  //  }
-  // })
-  // console.log("hello", idToDelete);
-  myLibrary = myLibrary.filter((book) => {
-    if (myLibrary[book.id] === +bookToDelete) {
-      saveLibrary();
-    }
-    render();
-  });
-  // saveLibrary();
-}
 
-function toggleRead(bookID, checked) {
-  myLibrary.forEach((book) => {
-    // review this
-    book.id === bookID ? (book.hasRead = checked) : !checked;
-  });
-  saveLibrary();
-}
+// function toggleRead(bookID, checked) {
+//   myLibrary.forEach((book) => {
+//     // review this
+//     book.id === bookID ? (book.hasRead = checked) : !checked;
+//   });
+//   saveLibrary();
+// }
 
 function saveLibrary() {
   localStorage.setItem("books", JSON.stringify(myLibrary));
@@ -169,12 +201,20 @@ addBookSubmit.addEventListener("click", (e) => {
 //   this.read = !this.read;
 // };
 //#region VIEW SECTION
+
+// function to render all the books and clear the container DOM
 function renderBooks() {
+  document.querySelector("#bookCardContainer").innerHTML = "";
   myLibrary.map((book, index) => {
     createBook(book, index);
   });
 }
+
+// render on page load
 renderBooks();
+
+
+
 // function render() {
 //   const bookCardContainer = document.getElementById("bookCardContainer");
 //   bookCardContainer.innerHTML = "";
