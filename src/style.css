@@ -279,4 +279,94 @@ input:checked + .slider:before {
   border-radius: 50%;
   grid-area: 1/2/2/3;
 }
+
+/*#region modal*/
+.add-book_modal{
+  display: none;
+  border: 4px solid #2196f3 ;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: var(--modal-background-opacity);
+  width: 500px;
+  height: 350px;
+  position: fixed;
+  z-index: 1;
+  left: 20%;
+  top: 20%;
+}
+.add-book_modal > form{
+  display: grid;
+  grid-template: 1fr 0.5fr 0.5fr / 1fr 1fr 1fr 0.1fr;
+  justify-content: center;
+
+}
+form > h3{
+  grid-area: 1/1/1/4;
+}
+form > span{
+  grid-area: 1/4/1/5;
+  cursor: pointer;
+  font-size: 40px;
+  color: var(--heading-text-color);
+  justify-self: start;
+}
+form > label{
+  padding: 5px;
+  justify-self: right;
+}
+form > input{
+  margin: 5px;
+  justify-self: left;
+  max-height: 20px;
+}
+form > select{
+  grid-area: 4/2/5/3;
+  margin: 5px;
+}
+form > label[for="title"]{
+  grid-area: 2/1/3/2;
+}
+form > label[for="author"]{
+  grid-area: 3/1/4/2;
+}
+form > label[for="genre"]{
+  grid-area: 4/1/5/2;
+}
+form > label[for="yearPublished"]{
+  grid-area: 5/1/6/2;
+}
+form > label[for="pages"]{
+  grid-area: 6/1/7/2;
+}
+form > label[for="hasRead"]{
+  grid-area: 7/1/7/2;
+}
+form > input[name="title"]{
+  grid-area: 2/2/3/3;
+}
+form > input[name="author"]{
+  grid-area: 3/2/4/3;
+}
+form > select[name="genre"]{
+  grid-area: 4/2/5/3;
+}
+form > input[name="yearPublished"]{
+  grid-area: 5/2/6/3;
+}
+form > input[name="pages"]{
+  grid-area: 6/2/7/3;
+}
+form > input[type="checkbox"]{
+  grid-area: 7/2/8/3;
+  justify-self: left;
+}
+form > input[type="submit"]{
+  grid-area: 8/2/9/3;
+}
+form > p{
+  grid-area: 9/1/10/4;
+  justify-self: center;
+  margin: 20px 0 0 0;
+}
+/*#endregion modal*/
 /*#endregion main*/

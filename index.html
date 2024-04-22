@@ -21,7 +21,7 @@
     <main class="libraryDisplay">
       <div class="bookContainer" id="bookCardContainer"></div>
     </main>
-    <div id="add-new-book_modal">
+    <div id="add-new-book_modal" class="add-book_modal">
       <form id="add-new-book_form" name="add-new-book_form">
         <h3>Input book info and select "Add Book to Library".</h3>
         <span class="close">&times;</span>
@@ -30,7 +30,16 @@
         <label for="author">Author:</label>
         <input required type="text" id="author" name="author" />
         <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre" />
+        <select id="genre" name="genre">
+          <option value="none" selected dsiabled hidden>Select a Genre</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Romance">Romance</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Biography">Biography</option>
+        </select>
         <label for="yearPublished">Year:</label>
         <input type="number" min="1800" max="2099" id="yearPublished" name="yearPublished" />
         <label for="pages">Pages:</label>
