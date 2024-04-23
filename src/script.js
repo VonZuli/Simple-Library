@@ -29,7 +29,7 @@ function createBookElement(el, content, className) {
 function createReadElement(bookItem, book) {
   const read = document.createElement("div");
   read.className = "book-read";
-  const readLabel = createBookElement("h4", "Read:", `book-read-label`);
+  const readLabel = createBookElement("h4", "Read?", `book-read-label`);
   read.appendChild(readLabel);
   // readLabel.classList.add("switch");
   // readLabel.setAttribute("id", "toggleRead");
@@ -55,7 +55,7 @@ function createReadElement(bookItem, book) {
     bookItem.className = "bookDetailsCard read-checked";
   }
   read.appendChild(readLabel);
-  readLabel.appendChild(readToggleSwitch);
+  read.appendChild(readToggleSwitch);
   // readLabel.appendChild(readToggleSlider)
   return read;
 }
